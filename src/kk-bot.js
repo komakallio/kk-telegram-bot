@@ -1,6 +1,13 @@
 const Telebot = require('telebot');
 const kk_api = require('./kk-api');
-const bot_config = require('./kk-bot-config');
+
+let bot_config = {};
+try {
+  bot_config = require('./kk-bot-config');
+} catch (err) {
+  console.log(err.message);
+  return;
+}
 
 const allowed_ids = bot_config.allowed_chat_ids;
 const bot_token = bot_config.token;
