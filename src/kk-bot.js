@@ -21,19 +21,19 @@ bot.on('/start', function(msg) {
   if(!is_allowed_user(msg)) {
     return;
   }
-  msg.reply.text('Tähtitieteellisen hyvää päivää, ' + msg.from.first_name + '!');
+  msg.reply.text('An astronomically good day to you, ' + msg.from.first_name + '!');
 });
 
 bot.on('/weather', function(msg) {
   if(!is_allowed_user(msg)) {
-    msg.reply.text('Sori, et kuulu sisäpiiriin!');
+    msg.reply.text('Sorry, you are not part of the Komakallio inner circle!');
     return;
   }
   kk_api.weather((weather_conditions) => {
     let temp = weather_conditions.temperature;
     let hum = weather_conditions.humidity;
     let wind_speed = weather_conditions.windspeed;
-    msg.reply.text('Lämpötila: ' + temp + '°C, suhteellinen kosteus: ' + hum + '%, tuulen nopeus: ' + wind_speed + ' m/s');
+    msg.reply.text('Temperature: ' + temp + '°C, relative humidity: ' + hum + '%, wind speed: ' + wind_speed + ' m/s');
   });
 });
 
