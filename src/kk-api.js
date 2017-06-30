@@ -10,12 +10,11 @@ exports.weather = function(success_cb, failure_cb) {
   };
   request.get(options, function(err, res, body) {
     if (err) {
-      winston.log('error', err);
+      winston.log('error', 'Weather API error: ' + err);
       failure_cb();
       return;
-    }
-    if (res.statusCode != 200) {
-      winston.log('error', res.statusCode);
+    } else if (res.statusCode != 200) {
+      winston.log('error', 'Weather API returned status code: ' + res.statusCode);
       failure_cb();
       return;
     }
