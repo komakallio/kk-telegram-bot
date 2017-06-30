@@ -1,3 +1,4 @@
+const winston = require('winston');
 const Telebot = require('telebot');
 const kk_api = require('./kk-api');
 
@@ -5,7 +6,7 @@ let bot_config = {};
 try {
   bot_config = require('./kk-bot-config');
 } catch (err) {
-  console.log(err.message);
+  winston.log('error', err.message);
   return;
 }
 

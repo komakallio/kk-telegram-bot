@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "request": "^2.81.0",
-    "telebot": "^1.2.2"
+    "telebot": "^1.2.2",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "mocha": "^3.4.2"

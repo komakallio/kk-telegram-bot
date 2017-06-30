@@ -1,4 +1,5 @@
 const request = require('request');
+const winston = require('winston');
 
 api_url = 'http://komakallio.dy.fi:9001/'
 
@@ -9,11 +10,11 @@ exports.weather = function(callback) {
   };
   request(options, function(err, res, body) {
     if (err) {
-      console.log(err)
+      winston.log('error', err)
       return;
     }
     if (res.statusCode != 200) {
-      console.log(res.statusCode);
+      winston.log('error', res.statusCode);
       return;
     }
     callback(body);
