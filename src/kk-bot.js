@@ -2,6 +2,10 @@ const winston = require('winston');
 const Telebot = require('telebot');
 const kk_api = require('./kk-api');
 
+// Configure logger
+winston.add(winston.transports.File, { filename: 'kk-bot.log' });
+
+// Load bot configuration file
 let bot_config = {};
 try {
   bot_config = require('./kk-bot-config');
