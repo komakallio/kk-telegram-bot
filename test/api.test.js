@@ -1,13 +1,21 @@
 const kk_api = require('../src/kk-api.js');
 const assert = require('assert');
 const sinon = require('sinon');
-let http = require('http');
+let request = require('request');
 
 describe('kk-api', () => {
   describe('#weather()', () => {
+    beforeEach(() => {
+      this.requestStub = sinon.stub(request, 'get');
+    });
+
+    afterEach(() => {
+      this.requestStub.restore();
+    });
+
     it('should call correct url', () => {
-      // TODO: Implement tests
-      assert(false);
+      kk_api.weather();
+      assert(this.requestStub.calledWithMatch({url: 'http://komakallio.dy.fi:9001/weather'}));
     });
   });
 });

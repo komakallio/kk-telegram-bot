@@ -8,7 +8,7 @@ exports.weather = function(success_cb, failure_cb) {
     url: api_url + 'weather',
     json: true
   };
-  request(options, function(err, res, body) {
+  request.get(options, function(err, res, body) {
     if (err) {
       winston.log('error', err);
       failure_cb();
