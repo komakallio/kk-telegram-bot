@@ -34,11 +34,15 @@ bot.on('/weather', function(msg) {
     msg.reply.text('Sorry, you are not part of the Komakallio inner circle!');
     return;
   }
-  kk_api.weather((weather_conditions) => {
-    let temp = weather_conditions.temperature;
-    let hum = weather_conditions.humidity;
-    let wind_speed = weather_conditions.windspeed;
-    msg.reply.text('Temperature: ' + temp + '°C, relative humidity: ' + hum + '%, wind speed: ' + wind_speed + ' m/s');
+  kk_api.weather(
+    function success(weather_conditions) {
+      let temp = weather_conditions.temperature;
+      let hum = weather_conditions.humidity;
+      let wind_speed = weather_conditions.windspeed;
+      msg.reply.text('Temperature: ' + temp + '°C, relative humidity: ' + hum + '%, wind speed: ' + wind_speed + ' m/s');
+    },
+    function failure() {
+      msg.reply.text('Sorry, there was a problem fetching the data!');
   });
 });
 
