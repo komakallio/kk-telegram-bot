@@ -1,14 +1,14 @@
-const kk_api = require('../src/kk-api.js');
+const kk_api = require('../src/api.js');
 const assert = require('assert');
 const sinon = require('sinon');
 const winston = require('winston');
 const rp = require('request-promise-native');
-const fake_data = require('./kk-api-example-data');
+const fake_data = require('./api-example-data');
 
 // Disable logging for tests
 winston.remove(winston.transports.Console);
 
-describe('kk-api', () => {
+describe('api', () => {
   describe('#weather()', () => {
     beforeEach(() => {
       // Stub rp.get(...)

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Telegram bot for Komakallio Observatory.",
   "scripts": {
-    "start": "node src/kk-bot.js",
+    "start": "node src/bot.js",
     "test": "mocha test"
   },
   "author": "",

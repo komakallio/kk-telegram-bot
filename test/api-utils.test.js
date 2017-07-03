@@ -1,9 +1,9 @@
-const api_utils = require('../src/kk-api-utils');
+const api_utils = require('../src/api-utils');
 const assert = require('assert');
 const sinon = require('sinon');
-const fake_data = require('./kk-api-example-data');
+const fake_data = require('./api-example-data');
 
-describe('kk-api-utils', () => {
+describe('api-utils', () => {
   describe('parse_weather_data', () => {
     this.expected_weather_output = {
       temperature: { name: 'Temperature', value: 15.7, unit: '°C' },

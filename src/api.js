@@ -1,6 +1,6 @@
 const rp = require('request-promise-native');
 const winston = require('winston');
-const api_utils = require('./kk-api-utils.js');
+const api_utils = require('./api-utils.js');
 
 api_url = 'http://komakallio.dy.fi:9001/'
 

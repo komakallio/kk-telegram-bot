@@ -1,14 +1,14 @@
 const winston = require('winston');
 const Telebot = require('telebot');
-const kk_api = require('./kk-api');
+const kk_api = require('./api');
 
 // Configure logger
-winston.add(winston.transports.File, { filename: 'kk-bot.log' });
+winston.add(winston.transports.File, { filename: 'bot.log' });
 
 // Load bot configuration file
 let bot_config = {};
 try {
-  bot_config = require('./kk-bot-config');
+  bot_config = require('./bot-config');
 } catch (err) {
   winston.log('error', err.message);
   return;
