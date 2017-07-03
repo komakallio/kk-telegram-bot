@@ -19,16 +19,18 @@ exports.weather = function() {
   });
 };
 
-exports.rain = function(success_cb, failure_cb) {
-  let options = {
-    url: api_url + 'rain',
-    json: true
-  };
+exports.rain = function() {
+  return new Promise((resolve, reject) => {
+    let options = {
+      url: api_url + 'rain',
+      json: true
+    };
 
-  rp.get(options)
-    .then(success_cb)
-    .catch((err) => {
-      winston.log('error', 'Rain API error: ' + err);
-      failure_cb();
-    });
+    rp.get(options)
+      .then(resolve)
+      .catch((err) => {
+        winston.log('error', 'Rain API error: ' + err);
+        reject();
+      });
+  });
 };
