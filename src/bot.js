@@ -22,14 +22,14 @@ let bot = new Telebot({
   usePlugins: ['floodProtection']
 });
 
-bot.on('/start', function(msg) {
+bot.on('/start', (msg) => {
   if(!is_allowed_user(msg)) {
     return;
   }
   msg.reply.text('An astronomically good day to you, ' + msg.from.first_name + '!');
 });
 
-bot.on('/weather', function(msg) {
+bot.on('/weather', (msg) => {
   if(!is_allowed_user(msg)) {
     msg.reply.text('Sorry, you are not part of the Komakallio inner circle!');
     return;
@@ -44,7 +44,28 @@ bot.on('/weather', function(msg) {
                       wind.name + ': ' + wind.value + ' ' + wind.unit + '.');
     })
     .catch(() => {
-      msg.reply.text('Sorry, there was a problem fetching the data!');
+      msg.reply.text('Sorry, there was a problem fetching weather data!');
+    });
+});
+
+bot.on('/rain', (msg) => {
+  if(!is_allowed_user(msg)) {
+    msg.reply.text('Sorry, you are not part of the Komakallio inner circle!');
+    return;
+  }
+  kk_api.rain()
+    .then((rain) => {
+      let raining = rain.rain.value > 0;
+      let hailing = rain.hail.value > 0;
+      if (raining || hailing) {
+        msg.reply.text(rain.rain.name + ': ' + rain.rain.value + ' ' + rain.rain.unit +'\n' +
+                        rain.hail.name + ': ' + rain.hail.value + ' ' + rain.hail.unit);
+      } else {
+        msg.reply.text('It is not raining!');
+      }
+    })
+    .catch(() => {
+      msg.reply.text('Sorry there was a problem fetching rain data!');
     });
 });
 
