@@ -1,4 +1,4 @@
-const rp = require('request-promise');
+const rp = require('request-promise-native');
 const winston = require('winston');
 
 api_url = 'http://komakallio.dy.fi:9001/'
@@ -29,4 +29,4 @@ exports.rain = function(success_cb, failure_cb) {
       winston.log('error', 'Rain API error: ' + err);
       failure_cb();
     });
-}
+};

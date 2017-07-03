@@ -2,7 +2,7 @@ const kk_api = require('../src/kk-api.js');
 const assert = require('assert');
 const sinon = require('sinon');
 const winston = require('winston');
-const rp = require('request-promise');
+const rp = require('request-promise-native');
 
 // Disable logging for tests
 winston.remove(winston.transports.Console);
