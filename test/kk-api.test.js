@@ -21,25 +21,37 @@ describe('kk-api', () => {
     it('should call correct url', () => {
       this.requestStub.resolves({});
 
-      kk_api.weather(() => {}, () => {});
+      kk_api.weather();
 
       assert(this.requestStub.calledWithMatch({url: 'http://komakallio.dy.fi:9001/weather'}));
     });
 
-    it('should call success_cb on success', (done) => {
+    it('should resolve on success', (done) => {
       this.requestStub.resolves({});
 
-      kk_api.weather(
-        () => { assert(true); done(); },
-        () => { assert(false); done(); });
+      kk_api.weather()
+        .then(() => {
+          assert(true);
+          done();
+        })
+        .catch(() => {
+          assert(false)
+          done();
+        });
     });
 
-    it('should call failure_cb on error', (done) => {
+    it('should reject on error', (done) => {
       this.requestStub.rejects();
 
-      kk_api.weather(
-        () => { assert(false); done(); },
-        () => { assert(true); done(); });
+      kk_api.weather()
+        .then(() => {
+          assert(false);
+          done();
+        })
+        .catch(() => {
+          assert(true);
+          done();
+        });
     });
   });
 
