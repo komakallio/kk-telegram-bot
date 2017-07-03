@@ -3,6 +3,7 @@ const assert = require('assert');
 const sinon = require('sinon');
 const winston = require('winston');
 const rp = require('request-promise-native');
+const fake_data = require('./kk-api-example-data');
 
 // Disable logging for tests
 winston.remove(winston.transports.Console);
@@ -19,7 +20,7 @@ describe('kk-api', () => {
     });
 
     it('should call correct url', () => {
-      this.requestStub.resolves({});
+      this.requestStub.resolves(fake_data.example_weather_data);
 
       kk_api.weather();
 
@@ -27,7 +28,7 @@ describe('kk-api', () => {
     });
 
     it('should resolve on success', (done) => {
-      this.requestStub.resolves({});
+      this.requestStub.resolves(fake_data.example_weather_data);
 
       kk_api.weather()
         .then(() => {

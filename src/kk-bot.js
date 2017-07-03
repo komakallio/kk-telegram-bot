@@ -35,11 +35,13 @@ bot.on('/weather', function(msg) {
     return;
   }
   kk_api.weather()
-    .then((weather_conditions) => {
-      let temp = weather_conditions.temperature;
-      let hum = weather_conditions.humidity;
-      let wind_speed = weather_conditions.windspeed;
-      msg.reply.text('Temperature: ' + temp + '°C, relative humidity: ' + hum + '%, wind speed: ' + wind_speed + ' m/s');
+    .then((weather) => {
+      let temp = weather.temperature;
+      let hum = weather.humidity;
+      let wind = weather.windspeed;
+      msg.reply.text(temp.name + ': ' + temp.value + ' ' + temp.unit + '\n' +
+                      hum.name + ': ' + hum.value + ' ' + hum.unit + '\n' +
+                      wind.name + ': ' + wind.value + ' ' + wind.unit + '.');
     })
     .catch(() => {
       msg.reply.text('Sorry, there was a problem fetching the data!');

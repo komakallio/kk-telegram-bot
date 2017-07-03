@@ -1,5 +1,6 @@
 const rp = require('request-promise-native');
 const winston = require('winston');
+const api_utils = require('./kk-api-utils.js');
 
 api_url = 'http://komakallio.dy.fi:9001/'
 
@@ -11,7 +12,9 @@ exports.weather = function() {
     };
 
     rp.get(options)
-      .then(resolve)
+      .then((body) => {
+        resolve(api_utils.parse_weather_data(body));
+      })
       .catch((err) => {
         winston.log('error', 'Weather API error: ' + err);
         reject();
@@ -34,3 +37,4 @@ exports.rain = function() {
       });
   });
 };
+
