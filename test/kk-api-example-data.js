@@ -11,3 +11,46 @@ exports.example_weather_data = {
   skytemperature: 13.06,
   skyquality: 0
 };
+
+exports.example_rain_data = {
+  Data: {
+    Hail: {
+      Duration: [
+        0,
+        "s"
+      ],
+      Intensity: [
+        0,
+        "hits/cm2h"
+      ],
+      Peak: [
+        0,
+        "hits/cm2h"
+      ],
+      Accumulation: [
+        0,
+        "hits/cm2"
+      ]
+    },
+    Rain: {
+      Duration: [
+        9050,
+        "s"
+      ],
+      Intensity: [
+        0,
+        "mm/h"
+      ],
+      Peak: [
+        30,
+        "mm/h"
+      ],
+      Accumulation: [
+        6.56,
+        "mm"
+      ]
+    }
+  },
+  Type: "Rain",
+  Timestamp: 1499079534548
+};

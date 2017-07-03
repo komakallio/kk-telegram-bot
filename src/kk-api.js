@@ -12,9 +12,7 @@ exports.weather = function() {
     };
 
     rp.get(options)
-      .then((body) => {
-        resolve(api_utils.parse_weather_data(body));
-      })
+      .then((body) => resolve(api_utils.parse_weather_data(body)))
       .catch((err) => {
         winston.log('error', 'Weather API error: ' + err);
         reject();
@@ -30,7 +28,7 @@ exports.rain = function() {
     };
 
     rp.get(options)
-      .then(resolve)
+      .then((body) => resolve(api_utils.parse_rain_data(body)))
       .catch((err) => {
         winston.log('error', 'Rain API error: ' + err);
         reject();

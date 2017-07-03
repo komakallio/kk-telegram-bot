@@ -54,6 +54,16 @@ describe('kk-api', () => {
           done();
         });
     });
+
+    it('should return correct data', (done) => {
+      this.requestStub.resolves(fake_data.example_weather_data);
+
+      kk_api.weather()
+        .then((weather_conditions) => {
+          assert(weather_conditions.temperature !== undefined);
+          done();
+        });
+    });
   });
 
   describe('#rain()', () => {
@@ -67,15 +77,15 @@ describe('kk-api', () => {
     });
 
     it('should call correct url', () => {
-      this.requestStub.resolves({});
+      this.requestStub.resolves(fake_data.example_rain_data);
 
       kk_api.rain();
 
       assert(this.requestStub.calledWithMatch({url: 'http://komakallio.dy.fi:9001/rain'}));
     });
 
-    it('should resolve on error', (done) => {
-      this.requestStub.resolves({});
+    it('should resolve on success', (done) => {
+      this.requestStub.resolves(fake_data.example_rain_data);
 
       kk_api.rain()
         .then(() => {
@@ -98,6 +108,16 @@ describe('kk-api', () => {
         })
         .catch(() => {
           assert(true);
+          done();
+        });
+    });
+
+    it('should return correct data', (done) => {
+      this.requestStub.resolves(fake_data.example_rain_data);
+
+      kk_api.rain()
+        .then((rain_conditions) => {
+          assert(rain_conditions.rain !== undefined);
           done();
         });
     });
