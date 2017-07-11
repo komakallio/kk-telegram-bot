@@ -36,3 +36,18 @@ exports.rain = function() {
   });
 };
 
+exports.rain_trigger = function() {
+  return new Promise((resolve, reject) => {
+    let options = {
+      url: api_url + 'raintrigger',
+      json: true
+    };
+
+    rp.get(options)
+      .then((body) => resolve(api_utils.parse_rain_trigger_data(body)))
+      .catch((err) => {
+        winston.log('error', 'Rain trigger API error: ' + err);
+        reject();
+      });
+  });
+};

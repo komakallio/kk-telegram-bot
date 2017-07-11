@@ -122,4 +122,61 @@ describe('api', () => {
         });
     });
   });
+
+  describe('#rain_trigger', () => {
+    beforeEach(() => {
+      // Stub rp.get(...)
+      this.requestStub = sinon.stub(rp, 'get');
+    });
+
+    afterEach(() => {
+      this.requestStub.restore();
+    });
+
+    it('should call correct url', () => {
+      this.requestStub.resolves(fake_data.example_rain_trigger_data);
+
+      kk_api.rain_trigger();
+
+      assert(this.requestStub.calledWithMatch({url: 'http://komakallio.dy.fi:9001/raintrigger'}));
+    });
+
+    it('should resolve on success', (done) => {
+      this.requestStub.resolves(fake_data.example_rain_trigger_data);
+
+      kk_api.rain_trigger()
+        .then(() => {
+          assert(true);
+          done();
+        })
+        .catch(() => {
+          assert(false)
+          done();
+        });
+    });
+
+    it('should reject on error', (done) => {
+      this.requestStub.rejects();
+
+      kk_api.rain_trigger()
+        .then(() => {
+          assert(false);
+          done();
+        })
+        .catch(() => {
+          assert(true);
+          done();
+        });
+    });
+
+    it('should return correct data', (done) => {
+      this.requestStub.resolves(fake_data.example_rain_trigger_data);
+
+      kk_api.rain_trigger()
+        .then((rain_conditions) => {
+          assert(rain_conditions.rain !== undefined);
+          done();
+        });
+    });
+  });
 });

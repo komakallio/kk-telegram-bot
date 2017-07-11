@@ -54,3 +54,12 @@ exports.example_rain_data = {
   Type: "Rain",
   Timestamp: 1499079534548
 };
+
+exports.example_rain_trigger_data = {
+  Type: "RainTrigger",
+  Data: {
+    Rain: 1,
+    Intensity: 591
+  },
+  Timestamp: 1499774671143
+};

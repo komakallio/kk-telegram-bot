@@ -77,7 +77,46 @@ describe('api-utils', () => {
         }
       };
 
-      assert.throws(() => api_utils.parse_weather_data(partial_data), Error);
+      assert.throws(() => api_utils.parse_rain_data(partial_data), Error);
+    });
+  });
+
+  describe('parse_rain_trigger_data', () => {
+    this.expected_rain_trigger_output = {
+      rain: {
+        name: 'Raining',
+        value: true,
+        unit: ''
+      },
+      wetness: {
+        name: 'Plate wetness',
+        value: 591,
+        unit: ''
+      }
+    };
+
+    it('throws error on no data', () => {
+      assert.throws(() => api_utils.parse_rain_trigger_data(), Error);
+    });
+
+    it('correctly parses rain trigger data', () => {
+      let actual_output = api_utils.parse_rain_trigger_data(fake_data.example_rain_trigger_data);
+
+      assert.deepEqual(
+        actual_output,
+        this.expected_rain_trigger_output,
+        'Parsed rain trigger data not correct!'
+      );
+    });
+
+    it('throws error if part of data missing', () => {
+      partial_data = {
+        Data: {
+          intensity: 0
+        }
+      };
+
+      assert.throws(() => api_utils.parse_rain_trigger_data(partial_data), Error);
     });
   });
 });

@@ -37,3 +37,14 @@ let parse_item = function(name, value, unit) {
   return { name: name, value: value, unit: unit };
 }
 
+exports.parse_rain_trigger_data = function(data) {
+  if (data == undefined) {
+    throw new Error('Undefined rain trigger data!');
+  }
+
+  let output = {};
+  output.rain = parse_item('Raining', data.Data.Rain == 1, '');
+  output.wetness = parse_item('Plate wetness', data.Data.Intensity, '');
+
+  return output;
+};
