@@ -1,7 +1,12 @@
 const api_utils = require('../src/api-utils');
 const assert = require('assert');
 const sinon = require('sinon');
+const rp = require('request-promise-native');
 const fake_data = require('./api-example-data');
+const winston = require('winston');
+
+// Disable logging for tests
+winston.remove(winston.transports.Console);
 
 describe('api-utils', () => {
   describe('parse_weather_data', () => {
@@ -117,6 +122,52 @@ describe('api-utils', () => {
       };
 
       assert.throws(() => api_utils.parse_rain_trigger_data(partial_data), Error);
+    });
+  });
+
+  describe('call_api', () => {
+    beforeEach(() => {
+      this.requestStub = sinon.stub(rp, 'get');
+    });
+
+    afterEach(() => {
+      this.requestStub.restore();
+    });
+
+    it('should call correct url', () => {
+      this.requestStub.resolves();
+
+      api_utils.call_api('http://example.com/api', () => {}, 'Test');
+
+      assert(this.requestStub.calledWithMatch({url: 'http://example.com/api'}));
+    });
+
+    it('should resolve on success', (done) => {
+      this.requestStub.resolves();
+
+      api_utils.call_api('http://example.com/api', () => {}, 'Test')
+        .then(() => {
+          assert(true);
+          done();
+        })
+        .catch(() => {
+          assert(false);
+          done();
+        });
+    });
+
+    it('should reject on error', (done) => {
+      this.requestStub.rejects();
+
+      api_utils.call_api('http://example.com/api', () => {}, 'Test')
+        .then(() => {
+          assert(false);
+          done();
+        })
+        .catch(() => {
+          assert(true);
+          done();
+        });
     });
   });
 });

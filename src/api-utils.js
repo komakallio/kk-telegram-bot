@@ -52,10 +52,10 @@ exports.parse_rain_trigger_data = function(data) {
   return output;
 };
 
-exports.call_api = function(suffix, callback, name) {
+exports.call_api = function(url, callback, name) {
   return new Promise((resolve, reject) => {
     let options = {
-      url: api_url + suffix,
+      url: url,
       json: true
     }
 
