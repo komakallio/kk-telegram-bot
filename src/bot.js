@@ -53,13 +53,19 @@ bot.on('/rain', (msg) => {
     msg.reply.text('Sorry, you are not part of the Komakallio inner circle!');
     return;
   }
-  kk_api.rain()
-    .then((rain) => {
-      let raining = rain.rain.value > 0;
-      let hailing = rain.hail.value > 0;
-      if (raining || hailing) {
-        msg.reply.text(rain.rain.name + ': ' + rain.rain.value + ' ' + rain.rain.unit +'\n' +
-                        rain.hail.name + ': ' + rain.hail.value + ' ' + rain.hail.unit);
+
+  kk_api.rain_trigger()
+    .then((rain_trigger) => {
+      let is_raining = rain_trigger.rain.value;
+      if (is_raining) {
+        kk_api.rain()
+          .then((rain_data) => {
+            msg.reply.text(rain_data.rain.name + ': ' + rain_data.rain.value + ' ' + rain_data.rain.unit +'\n' +
+                            rain_data.hail.name + ': ' + rain_data.hail.value + ' ' + rain_data.hail.unit);
+          })
+          .catch(() => {
+            msg.reply.text('Sorry there was a problem fetching rain data!');
+          });
       } else {
         msg.reply.text('It is not raining!');
       }
