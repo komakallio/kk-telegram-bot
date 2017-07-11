@@ -9,7 +9,7 @@ const fake_data = require('./api-example-data');
 winston.remove(winston.transports.Console);
 
 describe('api', () => {
-  describe('#weather()', () => {
+  describe('#weather', () => {
     beforeEach(() => {
       // Stub rp.get(...)
       this.requestStub = sinon.stub(rp, 'get');
@@ -66,7 +66,7 @@ describe('api', () => {
     });
   });
 
-  describe('#rain()', () => {
+  describe('#rain', () => {
     beforeEach(() => {
       // Stub rp.get(...)
       this.requestStub = sinon.stub(rp, 'get');
