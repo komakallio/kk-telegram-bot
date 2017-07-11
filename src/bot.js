@@ -64,14 +64,14 @@ bot.on('/rain', (msg) => {
                             rain_data.hail.name + ': ' + rain_data.hail.value + ' ' + rain_data.hail.unit);
           })
           .catch(() => {
-            msg.reply.text('Sorry there was a problem fetching rain data!');
+            msg.reply.text('Sorry, there was a problem fetching rain data!');
           });
       } else {
         msg.reply.text('It is not raining!');
       }
     })
     .catch(() => {
-      msg.reply.text('Sorry there was a problem fetching rain data!');
+      msg.reply.text('Sorry, there was a problem fetching rain data!');
     });
 });
 
