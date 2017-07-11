@@ -1,3 +1,6 @@
+const rp = require('request-promise-native');
+const winston = require('winston');
+
 exports.parse_weather_data = function(data) {
   if (data == undefined) {
     throw new Error('Undefined weather data!');
@@ -47,4 +50,20 @@ exports.parse_rain_trigger_data = function(data) {
   output.wetness = parse_item('Plate wetness', data.Data.Intensity, '');
 
   return output;
+};
+
+exports.call_api = function(suffix, callback, name) {
+  return new Promise((resolve, reject) => {
+    let options = {
+      url: api_url + suffix,
+      json: true
+    }
+
+    rp.get(options)
+      .then((body) => resolve(callback(body)))
+      .catch((err) => {
+        winston.log('error', name + ' API error: ' + err);
+        reject();
+      });
+  });
 };
