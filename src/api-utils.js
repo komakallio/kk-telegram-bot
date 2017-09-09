@@ -27,8 +27,8 @@ exports.parse_rain_data = function(data) {
     throw new Error('Undefined rain data!');
   }
   let output = {};
-  output.hail = parse_item('Hail intensity', data.Data.Hail.Intensity[0], 'hits/cm²h');
-  output.rain = parse_item('Rain intensity', data.Data.Rain.Intensity[0], 'mm/h');
+  output.hail = parse_item('Hail intensity', data.Rain.Hail.Intensity[0], 'hits/cm²h');
+  output.rain = parse_item('Rain intensity', data.Rain.Rain.Intensity[0], 'mm/h');
 
   return output;
 };

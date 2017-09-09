@@ -13,47 +13,23 @@ exports.example_weather_data = {
 };
 
 exports.example_rain_data = {
-  Data: {
+  Type: "Rain",
+  Rain: {
     Hail: {
-      Duration: [
-        0,
-        "s"
-      ],
-      Intensity: [
-        0,
-        "hits/cm2h"
-      ],
-      Peak: [
-        0,
-        "hits/cm2h"
-      ],
-      Accumulation: [
-        0,
-        "hits/cm2"
-      ]
+      Duration: [0, "s"],
+      Intensity: [0, "hits/cm2h"],
+      Peak: [0, "hits/cm2h"],
+      Accumulation: [0, "hits/cm2"]
     },
     Rain: {
-      Duration: [
-        9050,
-        "s"
-      ],
-      Intensity: [
-        0,
-        "mm/h"
-      ],
-      Peak: [
-        30,
-        "mm/h"
-      ],
-      Accumulation: [
-        6.56,
-        "mm"
-      ]
+      Duration: [57650, "s"],
+      Intensity: [4.2, "mm/h"],
+      Peak: [83.8, "mm/h"],
+      Accumulation: [89.32, "mm"]
     }
   },
-  Type: "Rain",
-  Timestamp: 1499079534548
-};
+  Timestamp: 1504948359113
+}
 
 exports.example_rain_trigger_data = {
   Type: "RainTrigger",

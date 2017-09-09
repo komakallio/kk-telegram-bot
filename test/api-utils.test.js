@@ -56,7 +56,7 @@ describe('api-utils', () => {
       },
       rain: {
         name: 'Rain intensity',
-        value: 0,
+        value: 4.2,
         unit: 'mm/h'
       }
     };
@@ -78,7 +78,7 @@ describe('api-utils', () => {
     it('throws error if part of data missing', () => {
       partial_data = {
         Data: {
-          Rain: fake_data.example_rain_data.Data.Rain
+          Rain: fake_data.example_rain_data.Rain.Rain
         }
       };
 
