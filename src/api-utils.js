@@ -34,7 +34,7 @@ exports.parse_rain_data = function(data) {
 };
 
 let parse_item = function(name, value, unit) {
-  if (value == null) {
+  if (value == null || value == undefined) {
     throw new Error(name + ' missing from data!');
   }
   return { name: name, value: value, unit: unit };
@@ -42,12 +42,20 @@ let parse_item = function(name, value, unit) {
 
 exports.parse_rain_trigger_data = function(data) {
   if (data == undefined) {
-    throw new Error('Undefined rain trigger data!');
+    throw new Error('Undefined rain trigger data object!');
   }
 
   let output = {};
-  output.rain = parse_item('Raining', data.Data.Rain == 1, '');
-  output.wetness = parse_item('Plate wetness', data.Data.Intensity, '');
+
+  if (data.RainTrigger.Rain == undefined) {
+    throw new Error('Undefined rain trigger data!');
+  }
+  output.rain = parse_item('Raining', data.RainTrigger.Rain == 1, '');
+
+  if (data.RainTrigger.Intensity == undefined) {
+    throw new Error('Undefined plate wetness data!');
+  }
+  output.wetness = parse_item('Plate wetness', data.RainTrigger.Intensity, '');
 
   return output;
 };

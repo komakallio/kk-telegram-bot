@@ -33,7 +33,7 @@ exports.example_rain_data = {
 
 exports.example_rain_trigger_data = {
   Type: "RainTrigger",
-  Data: {
+  RainTrigger: {
     Rain: 1,
     Intensity: 591
   },

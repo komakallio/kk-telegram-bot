@@ -116,8 +116,8 @@ describe('api-utils', () => {
 
     it('throws error if part of data missing', () => {
       partial_data = {
-        Data: {
-          intensity: 0
+        RainTrigger: {
+          Intensity: 0
         }
       };
 
