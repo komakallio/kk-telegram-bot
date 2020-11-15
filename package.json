@@ -1,6 +1,6 @@
 {
   "name": "komakallio-bot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Telegram bot for Komakallio Observatory.",
   "scripts": {
     "start": "node src/bot.js",
@@ -15,7 +15,7 @@
     "winston": "^2.3.1"
   },
   "devDependencies": {
-    "mocha": "^3.4.2",
-    "sinon": "^2.3.6"
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.1"
   }
 }

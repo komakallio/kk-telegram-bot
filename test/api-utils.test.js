@@ -31,7 +31,7 @@ describe('api-utils', () => {
     it('correctly parses weather data', () => {
       let actual_output = api_utils.parse_weather_data(fake_data.example_weather_data);
 
-      assert.deepEqual(
+      assert.deepStrictEqual(
         actual_output,
         this.expected_weather_output,
         'Parsed weather data not correct!'
@@ -68,7 +68,7 @@ describe('api-utils', () => {
     it('corretly parses rain data', () => {
       let actual_output = api_utils.parse_rain_data(fake_data.example_rain_data);
 
-      assert.deepEqual(
+      assert.deepStrictEqual(
         actual_output,
         this.expected_rain_output,
         'Parsed rain data not correct!'
@@ -107,7 +107,7 @@ describe('api-utils', () => {
     it('correctly parses rain trigger data', () => {
       let actual_output = api_utils.parse_rain_trigger_data(fake_data.example_rain_trigger_data);
 
-      assert.deepEqual(
+      assert.deepStrictEqual(
         actual_output,
         this.expected_rain_trigger_output,
         'Parsed rain trigger data not correct!'
