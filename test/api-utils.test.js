@@ -19,9 +19,6 @@ describe('api-utils', () => {
       windgust: { name: 'Wind gust speed', value: 0.4, unit: 'm/s' },
       winddir: { name: 'Wind direction', value: 124, unit: '°' },
       rainrate: { name: 'Rain rate', value: 0, unit: 'mm/h' },
-      cloudcover: { name: 'Cloud cover', value: 100, unit: '%' },
-      skytemperature: { name: 'Sky temperature', value: 13.06, unit: '°C' },
-      skyquality: { name: 'Sky quality', value: 0, unit: 'mag/arcsec²' }
     };
 
     it('throws error on no data', () => {

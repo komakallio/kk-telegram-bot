@@ -7,9 +7,6 @@ exports.example_weather_data = {
   windgust: 0.4,
   winddir: 124,
   rainrate: 0,
-  cloudcover: 100,
-  skytemperature: 13.06,
-  skyquality: 0
 };
 
 exports.example_rain_data = {

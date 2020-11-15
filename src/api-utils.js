@@ -15,9 +15,6 @@ exports.parse_weather_data = function(data) {
   output.windgust = parse_item('Wind gust speed', data.windgust, 'm/s');
   output.winddir = parse_item('Wind direction', data.winddir, '°');
   output.rainrate = parse_item('Rain rate', data.rainrate, 'mm/h');
-  output.cloudcover = parse_item('Cloud cover', data.cloudcover, '%');
-  output.skytemperature = parse_item('Sky temperature', data.skytemperature, '°C');
-  output.skyquality = parse_item('Sky quality', data.skyquality, 'mag/arcsec²');
 
   return output;
 };
